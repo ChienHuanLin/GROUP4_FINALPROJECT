@@ -1,0 +1,752 @@
+{
+	"info": {
+		"_postman_id": "356e11b5-ae92-4ab9-85db-a3aaccb2b188",
+		"name": "API_G4_POSTMAN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33728552"
+	},
+	"item": [
+		{
+			"name": "get all post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response content type is application/json\", function () {\r",
+							"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"pm.test(\"Response time is within acceptable range\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get post id 6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 解析响应体为 JSON\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response body contains userId with value 1\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"userId\");\r",
+							"    pm.expect(jsonData.userId).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/6",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post create a new post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 检查响应状态码是否为 201\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// 解析响应体为 JSON\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// 检查响应体中是否包含 id 字段且值为 101\r",
+							"pm.test(\"Response body contains id with value 101\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"id\", 101);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put renew id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 检查响应状态码是否为 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 解析响应体为 JSON\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// 检查响应体中是否包含 id 字段且值为 5\r",
+							"pm.test(\"Response body contains id with value 5\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"id\", 5);\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 title 字段且值为 \"put\"\r",
+							"pm.test(\"Response body contains title with value 'put'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"title\", \"put\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 body 字段且值为 \"renew the id\"\r",
+							"pm.test(\"Response body contains body with value 'renew the id'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"body\", \"renew the id\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 userId 字段且值为 1\r",
+							"pm.test(\"Response body contains userId with value 1\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"userId\", 1);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 5,\r\n  \"title\": \"put\",\r\n  \"body\": \"renew the id\",\r\n  \"userId\": 1\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/5",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch a few part",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 检查响应状态码是否为 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 解析响应体为 JSON\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// 检查响应体中是否包含 title 字段且值为 \"renew a few part\"\r",
+							"pm.test(\"Response body contains title with value 'renew a few part'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"title\", \"renew a few part\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 body 字段且值为 \"renew here also\"\r",
+							"pm.test(\"Response body contains body with value 'renew here also'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"body\", \"renew here also\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"renew a few part\",\r\n  \"body\": \"renew here also\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/7",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete post 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 检查响应状态码是否为 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/2",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/comments",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get comments from id 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 检查响应状态码是否为 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 解析响应体为 JSON\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// 检查响应体中是否包含 postId 字段且值为 1\r",
+							"pm.test(\"Response body contains postId with value 1\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"postId\", 1);\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 id 字段且值为 2\r",
+							"pm.test(\"Response body contains id with value 2\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"id\", 2);\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 name 字段且值为 \"quo vero reiciendis velit similique earum\"\r",
+							"pm.test(\"Response body contains name with value 'quo vero reiciendis velit similique earum'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"name\", \"quo vero reiciendis velit similique earum\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 email 字段且值为 \"Jayne_Kuhic@sydney.com\"\r",
+							"pm.test(\"Response body contains email with value 'Jayne_Kuhic@sydney.com'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"email\", \"Jayne_Kuhic@sydney.com\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 body 字段且值为预期的内容\r",
+							"pm.test(\"Response body contains body with expected value\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"body\", \"est natus enim nihil est dolore omnis voluptatem numquam\\net omnis occaecati quod ullam at\\nvoluptatem error expedita pariatur\\nnihil sint nostrum voluptatem reiciendis et\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/comments/2",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"comments",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post create a new comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 检查响应状态码是否为 201（表示资源已创建）\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// 解析响应体为 JSON\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// 检查响应体中是否包含 postId 字段且值为 1\r",
+							"pm.test(\"Response body contains postId with value 1\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"postId\", 1);\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 name 字段且值为 \"tiffany\"\r",
+							"pm.test(\"Response body contains name with value 'tiffany'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"name\", \"tiffany\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 email 字段且值为 \"tiffany40432@gmail.com\"\r",
+							"pm.test(\"Response body contains email with value 'tiffany40432@gmail.com'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"email\", \"tiffany40432@gmail.com\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 body 字段且值为 \"to create a new comment\"\r",
+							"pm.test(\"Response body contains body with value 'to create a new comment'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"body\", \"to create a new comment\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 id 字段且值为 501\r",
+							"pm.test(\"Response body contains id with value 501\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"id\", 501);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"postId\": 1,\r\n  \"name\": \"tiffany\",\r\n  \"email\": \"tiffany40432@gmail.com\",\r\n  \"body\": \"to create a new comment\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/comments",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all albums",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/albums",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get album id 8",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 检查响应状态码是否为 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 解析响应体为 JSON\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// 检查响应体中是否包含 userId 字段且值为 1\r",
+							"pm.test(\"Response body contains userId with value 1\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"userId\", 1);\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 id 字段且值为 8\r",
+							"pm.test(\"Response body contains id with value 8\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"id\", 8);\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 title 字段且值为 \"qui fuga est a eum\"\r",
+							"pm.test(\"Response body contains title with value 'qui fuga est a eum'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"title\", \"qui fuga est a eum\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/albums/8",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"albums",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/todos",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user id 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 检查响应状态码是否为 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 解析响应体为 JSON\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// 检查响应体中是否包含 id 字段且值为 3\r",
+							"pm.test(\"Response body contains id with value 3\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"id\", 3);\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 name 字段且值为 \"Clementine Bauch\"\r",
+							"pm.test(\"Response body contains name with value 'Clementine Bauch'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"name\", \"Clementine Bauch\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 username 字段且值为 \"Samantha\"\r",
+							"pm.test(\"Response body contains username with value 'Samantha'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"username\", \"Samantha\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 email 字段且值为 \"Nathan@yesenia.net\"\r",
+							"pm.test(\"Response body contains email with value 'Nathan@yesenia.net'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"email\", \"Nathan@yesenia.net\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 address 字段并验证其内容\r",
+							"pm.test(\"Response body contains correct address\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"address\");\r",
+							"    pm.expect(jsonData.address).to.have.property(\"street\", \"Douglas Extension\");\r",
+							"    pm.expect(jsonData.address).to.have.property(\"suite\", \"Suite 847\");\r",
+							"    pm.expect(jsonData.address).to.have.property(\"city\", \"McKenziehaven\");\r",
+							"    pm.expect(jsonData.address).to.have.property(\"zipcode\", \"59590-4157\");\r",
+							"    pm.expect(jsonData.address).to.have.nested.property(\"geo.lat\", \"-68.6102\");\r",
+							"    pm.expect(jsonData.address).to.have.nested.property(\"geo.lng\", \"-47.0653\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 phone 字段且值为 \"1-463-123-4447\"\r",
+							"pm.test(\"Response body contains phone with value '1-463-123-4447'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"phone\", \"1-463-123-4447\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 website 字段且值为 \"ramiro.info\"\r",
+							"pm.test(\"Response body contains website with value 'ramiro.info'\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"website\", \"ramiro.info\");\r",
+							"});\r",
+							"\r",
+							"// 检查响应体中是否包含 company 字段并验证其内容\r",
+							"pm.test(\"Response body contains correct company details\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"company\");\r",
+							"    pm.expect(jsonData.company).to.have.property(\"name\", \"Romaguera-Jacobson\");\r",
+							"    pm.expect(jsonData.company).to.have.property(\"catchPhrase\", \"Face to face bifurcated interface\");\r",
+							"    pm.expect(jsonData.company).to.have.property(\"bs\", \"e-enable strategic applications\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users/3",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all photos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/photos",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"photos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
